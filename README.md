@@ -6,7 +6,9 @@ python3.6
 
 pytorch
 
+data at `dataset`
 
+pertrained word vectors at `models/glove`
 
 ## Data Format
 
