@@ -107,7 +107,8 @@ venv.bak/
 *.bak
 *.pkl
 dataset
-! */README.md
 models
 log
 ner_evaluation
+! */README.md
+
