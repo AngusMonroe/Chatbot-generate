@@ -1,3 +1,4 @@
+import os
 import time
 import jieba
 import torch
@@ -139,4 +140,10 @@ def ner(txt, model, word_to_id, char_to_id, tag_to_id, id_to_tag, lower=True):
                 tmp = [w]
     if stat is not None:
         ans[stat].append(sep.join(tmp))
+
+    try:
+        os.remove(tmp_file[1])
+    except OSError:
+        pass
+
     return ans

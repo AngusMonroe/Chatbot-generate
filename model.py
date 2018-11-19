@@ -285,25 +285,24 @@ class RNN(nn.Module):
         # rnn module
         if rnn_model == 'LSTM':
             self.rnn = nn.LSTM(input_size=embed_size, hidden_size=hidden_size, num_layers=num_layers, dropout=0.5,
-                                batch_first=True, bidirectional=True)
+                               batch_first=True, bidirectional=True)
         elif rnn_model == 'GRU':
             self.rnn = nn.GRU(input_size=embed_size, hidden_size=hidden_size, num_layers=num_layers, dropout=0.5,
-                                batch_first=True, bidirectional=True)
+                              batch_first=True, bidirectional=True)
         else:
             raise LookupError(' only support LSTM and GRU')
 
-
-        self.bn2 = nn.BatchNorm1d(hidden_size*2)
+        self.bn2 = nn.BatchNorm1d(hidden_size * 2)
         self.fc = nn.Linear(hidden_size*2, num_output)
 
     def forward(self, x, seq_lengths):
-        '''
+        """
         Args:
             x: (batch, time_step, input_size)
 
         Returns:
             num_output size
-        '''
+        """
 
         x = x.view(x.size(0), -1)
         x_embed = self.encoder(x)
