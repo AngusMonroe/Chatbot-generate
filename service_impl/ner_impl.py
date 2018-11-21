@@ -94,6 +94,7 @@ def ner(txt, model, word_to_id, char_to_id, tag_to_id, id_to_tag, lower=True):
         for w in word:
             fout.write(w + ' B-DATE\n')
         fout.write('\n-DOCSTART- -X- B-DATE B-DATE')
+        fout.close()
     sentences = load_sentences(tmp_file[1], lower=lower, zeros=False)
 
     input_data = prepare_dataset(
