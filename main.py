@@ -67,4 +67,9 @@ def main(bot_id, ner_file_path, classify_file_path):
 
 
 if __name__ == '__main__':
-    main(bot_id='test', ner_file_path='dataset/ner/ner.txt', classify_file_path='dataset/classify/intent.txt')
+    import sys
+    if len(sys).argv != 4:
+        print("Usage: {} bot_id ner_file_path classify_file_path")
+        exit(-1)
+    bot_id, ner_file_path, classify_file_path = sys.argv[1:]
+    main(bot_id=bot_id, ner_file_path=ner_file_path, classify_file_path=classify_file_path)
