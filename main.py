@@ -68,8 +68,8 @@ def main(bot_id, ner_file_path, classify_file_path):
 
 if __name__ == '__main__':
     import sys
-    if len(sys).argv != 4:
-        print("Usage: {} bot_id ner_file_path classify_file_path")
+    if len(sys.argv) != 4:
+        print("Usage: {} bot_id ner_file_path classify_file_path".format(sys.argv[0]))
         exit(-1)
     bot_id, ner_file_path, classify_file_path = sys.argv[1:]
     main(bot_id=bot_id, ner_file_path=ner_file_path, classify_file_path=classify_file_path)
