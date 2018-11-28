@@ -20,7 +20,7 @@ from vocab import VocabBuilder, GloveVocabBuilder
 from dataloader import TextClassDataLoader
 from model import RNN
 from utils import AverageMeter, accuracy
-from utils import adjust_learning_rate
+from utils import classify_adjust_learning_rate
 
 np.random.seed(0)
 torch.manual_seed(0)
