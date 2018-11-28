@@ -25,7 +25,7 @@ def prepare_datset(bot_id, ner_file_path, classify_file_path):
 
 
 def train_ner(name, gpu_num):
-    cmd = 'CUDA_VISIBLE_DEVICES=' + gpu_num + ' nohup python3 -u train_ner.py' \
+    cmd = 'CUDA_DEVICE_ORDER=PCI_BUS_ID CUDA_VISIBLE_DEVICES=' + gpu_num + ' nohup python3 -u train_ner.py' \
                                               ' --train ' + 'dataset/' + name + '/ner/train.dat' \
                                               ' --dev ' + 'dataset/' + name + '/ner/dev.dat' \
                                               ' --test ' + 'dataset/' + name + '/ner/test.dat' \
@@ -39,7 +39,7 @@ def train_ner(name, gpu_num):
 
 
 def train_classify(name, gpu_num, class_num):
-    cmd = 'CUDA_VISIBLE_DEVICES=' + gpu_num + ' nohup python3 train_classify.py' \
+    cmd = 'CUDA_DEVICE_ORDER=PCI_BUS_ID CUDA_VISIBLE_DEVICES=' + gpu_num + ' nohup python3 train_classify.py' \
                                               ' --train ' + 'dataset/' + name + '/classify/train.dat' \
                                               ' --test ' + 'dataset/' + name + '/classify/test.dat' \
                                               ' --classes ' + str(class_num) + \
