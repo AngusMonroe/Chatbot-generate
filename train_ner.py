@@ -434,7 +434,7 @@ for epoch in range(1, 21):
             model.train(True)
 
         if count % len(train_data) == 0:
-            adjust_learning_rate(optimizer, lr=learning_rate/(1+0.05*count/len(train_data)))
+            ner_adjust_learning_rate(optimizer, lr=learning_rate/(1+0.05*count/len(train_data)))
 
 
 print(time.time() - t)

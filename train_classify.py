@@ -183,7 +183,7 @@ def test(val_loader, model, criterion):
 # training and testing
 for epoch in range(1, args.epochs + 1):
 
-    adjust_learning_rate(args.lr, optimizer, epoch)
+    classify_adjust_learning_rate(args.lr, optimizer, epoch)
     train(train_loader, model, criterion, optimizer, epoch)
     # test(val_loader, model, criterion)
 

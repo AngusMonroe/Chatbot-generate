@@ -230,7 +230,7 @@ def init_linear(input_linear):
         input_linear.bias.data.zero_()
 
 
-def adjust_learning_rate(optimizer, lr):
+def ner_adjust_learning_rate(optimizer, lr):
     """
     shrink learning rate for pytorch
     """
@@ -318,7 +318,7 @@ def accuracy(output, target, topk=(1,)):
     return res
 
 
-def adjust_learning_rate(lr, optimizer, epoch):
+def classify_adjust_learning_rate(lr, optimizer, epoch):
     """Sets the learning rate to the initial LR decayed by 10 every 8 epochs"""
     lr = lr * (0.1 ** (epoch // 8))
     for param_group in optimizer.param_groups:
