@@ -11,7 +11,6 @@ import numpy as np
 import csv
 # import nltk
 
-
 # models_path = "./models"
 eval_path = "./ner_evaluation"
 eval_temp = os.path.join(eval_path, "temp")
