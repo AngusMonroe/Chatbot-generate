@@ -48,7 +48,7 @@ def query(text, name):
 
 
 def main():
-    app.run(host='0.0.0.0', port=5014, debug=False)
+    app.run(host='0.0.0.0', port=55014, debug=False)
 
 if __name__ == '__main__':
     main()
