@@ -158,6 +158,7 @@ def prepare_dataset(sentences, word_to_id, char_to_id, tag_to_id, lower=True):
     for s in sentences:
         try:
             if s == '' or s == ' ' or s == '\n':
+                print("EMPTY")
                 continue
             str_words = [w[0] for w in s]
             words = [word_to_id[f(w) if f(w) in word_to_id else '<UNK>']
@@ -176,7 +177,8 @@ def prepare_dataset(sentences, word_to_id, char_to_id, tag_to_id, lower=True):
                 'caps': caps,
                 'tags': tags,
             })
-        except Exception:
+        except Exception as e:
+            print('EXCEPTION!!')
             print(s)
     return data
 
