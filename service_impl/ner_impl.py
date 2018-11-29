@@ -92,11 +92,12 @@ def ner(txt, model, word_to_id, char_to_id, tag_to_id, id_to_tag, lower=True):
     tmp_file = tempfile.mkstemp(text=True)
     with codecs.open(tmp_file[1], 'w', 'utf-8') as fout:
         for w in word:
-            fout.write(w + ' B-DATE\n')
+            fout.write(w + ' O\n')
         fout.write('\n-DOCSTART- -X- B-DATE B-DATE')
         fout.close()
     sentences = load_sentences(tmp_file[1], lower=lower, zeros=False)
 
+    print(sentences)
     input_data = prepare_dataset(
         sentences, word_to_id, char_to_id, tag_to_id, lower=lower
     )
@@ -106,15 +107,15 @@ def ner(txt, model, word_to_id, char_to_id, tag_to_id, id_to_tag, lower=True):
     for i in prediction_id:
         prediction_tag.append(id_to_tag[i])
 
-    label = ['DATE', 'ORG', 'KEY', 'PER', 'CON']
+    label = set()
+    for tag in tag_to_id.keys():
+        if tag.startswith('B-'):
+            label.add(tag[2:])
     ans = {
-        'PER': [],
-        'CON': [],
-        'DATE': [],
-        'ORG': [],
-        'KEY': [],
         'O': []
     }
+    for l in label:
+        ans[l] = []
 
     stat = None
     tmp = []

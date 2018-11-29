@@ -235,6 +235,7 @@ with open(mapping_file, 'wb') as f:
         'word_to_id': word_to_id,
         'tag_to_id': tag_to_id,
         'char_to_id': char_to_id,
+        'id_to_tag': id_to_tag,
         'parameters': parameters,
         'word_embeds': word_embeds
     }
