@@ -25,8 +25,8 @@ def classify_divide_data(name, data_file_path, lower=True):
         if lower:
             line = line.lower()
         # train: test = 4: 1
-        word = line.split()
-        intent.append(word[0])
+        word = line.split('\t')[0]
+        intent.append(word)
         file.write(line)
         if file == train_file and i > num * 0.8:
             file = test_file
@@ -38,8 +38,9 @@ def classify_divide_data(name, data_file_path, lower=True):
     test_file.close()
 
     print("The classify dataset have been already generated.")
+    print("Distinct intents:", len(set(intent)) - 1)
 
-    return len(set(intent)) - 1
+    return len(set(intent)) 
 
 
 if __name__ == '__main__':
