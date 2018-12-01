@@ -27,10 +27,10 @@ def prepare_datset(bot_id, ner_file_path, classify_file_path):
 def train_ner(name, gpu_num):
     cmd = 'CUDA_DEVICE_ORDER=PCI_BUS_ID CUDA_VISIBLE_DEVICES=' + gpu_num + ' python3 -u train_ner.py' \
                                               ' --word_dim 300' \
-                                              ' --train ' + 'data/' + name + '/ner/train.dat' \
-                                              ' --dev ' + 'data/' + name + '/ner/dev.dat' \
-                                              ' --test ' + 'data/' + name + '/ner/test.dat' \
-                                              ' --test_train ' + 'data/' + name + '/ner/train_test.dat' \
+                                              ' --train ' + 'dataset/' + name + '/ner/train.dat' \
+                                              ' --dev ' + 'dataset/' + name + '/ner/dev.dat' \
+                                              ' --test ' + 'dataset/' + name + '/ner/test.dat' \
+                                              ' --test_train ' + 'dataset/' + name + '/ner/train_test.dat' \
                                               ' --name ' + name 
     print(cmd)
     log_file = open('log/cmd.log', 'a', encoding='utf8')
@@ -42,8 +42,8 @@ def train_ner(name, gpu_num):
 def train_classify(name, gpu_num, class_num):
     cmd = 'CUDA_DEVICE_ORDER=PCI_BUS_ID CUDA_VISIBLE_DEVICES=' + gpu_num + ' python3 train_classify.py' \
                                               ' --embedding-size 300' \
-                                              ' --train ' + 'data/' + name + '/classify/train.dat' \
-                                              ' --test ' + 'data/' + name + '/classify/test.dat' \
+                                              ' --train ' + 'dataset/' + name + '/classify/train.dat' \
+                                              ' --test ' + 'dataset/' + name + '/classify/test.dat' \
                                               ' --classes ' + str(class_num) + \
                                               ' --name ' + name 
     print(cmd)
