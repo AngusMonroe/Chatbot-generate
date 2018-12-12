@@ -242,6 +242,7 @@ with open(mapping_file, 'wb') as f:
     pickle.dump(mappings, f)
 
 print('word_to_id: ', len(word_to_id))
+assert use_gpu
 model = BiLSTM_CRF(vocab_size=len(word_to_id),
                    tag_to_ix=tag_to_id,
                    embedding_dim=parameters['word_dim'],
@@ -423,6 +424,7 @@ for epoch in range(1, 21):
             best_train_F, new_train_F, _ = evaluating(model, test_train_data, best_train_F)
             best_dev_F, new_dev_F, save = evaluating(model, dev_data, best_dev_F)
             if save:
+                print("SAVE!")
                 torch.save(model, model_name)
             best_test_F, new_test_F, _ = evaluating(model, test_data, best_test_F)
             sys.stdout.flush()
@@ -438,6 +440,8 @@ for epoch in range(1, 21):
             ner_adjust_learning_rate(optimizer, lr=learning_rate/(1+0.05*count/len(train_data)))
 
 
+print("SAVE!")
+torch.save(model, model_name)
 print(time.time() - t)
 
 # plt.plot(losses)
