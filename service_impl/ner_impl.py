@@ -84,6 +84,27 @@ def evaluate(model, datas):
     return out
 
 
+def is_chinese(word):  # 判断单词是否为中文
+    for ch in word:
+        if '\u4e00' <= ch <= '\u9fff':
+            return True
+    return False
+
+
+def check_list(list):  # 检查list中所有元素，将中文词连接起来
+    if len(list) > 1:
+        tmp1 = []
+        for j in range(len(list) - 1):
+            if is_chinese(list[j]) or is_chinese(list[j + 1]):
+                list[j + 1] = list[j] + list[j + 1]
+            else:
+                tmp1.append(list[j])
+        tmp1.append(list[len(list) - 1])
+        return tmp1
+    else:
+        return list
+
+
 def ner(txt, model, word_to_id, char_to_id, tag_to_id, id_to_tag, lower=True):
     # txt = txt.strip()
     word = []
@@ -137,10 +158,12 @@ def ner(txt, model, word_to_id, char_to_id, tag_to_id, id_to_tag, lower=True):
                 tmp.append(w)
             else:
                 if stat is not None:
+                    tmp = check_list(tmp)
                     ans[stat].append(sep.join(tmp))
                 stat = 'O'
                 tmp = [w]
     if stat is not None:
+        tmp = check_list(tmp)
         ans[stat].append(sep.join(tmp))
 
     try:
@@ -149,3 +172,7 @@ def ner(txt, model, word_to_id, char_to_id, tag_to_id, id_to_tag, lower=True):
         pass
 
     return ans
+
+
+if __name__ == '__main__':
+    print(is_chinese('test'))
