@@ -2,6 +2,7 @@ import service_impl.ner_impl
 
 ner_model_cache = {}
 
+
 def ner(text, name):
     if name not in ner_model_cache:
         loader = service_impl.ner_impl.NERLoader(
