@@ -9,7 +9,9 @@ import json
 import logging
 from service.ner import *
 from service.classify import *
+from util.mongo_writer import load_db, write_db
 from flask import Flask
+import datetime
 
 logger = logging.getLogger('query')
 logger.setLevel(logging.INFO)
@@ -42,6 +44,14 @@ def query(text, name):
         'intent': classify(text, name),
         'entity': ner(text, name)
     }
+    log_data = {
+        'time': datetime.datetime.now(),
+        'bot_name': name
+    }
+
+    coll = load_db('dataset/mongo.txt')
+    write_db(coll, log_data.update(ret))
+
     result = json.dumps(ret, ensure_ascii=False)
     logger.info(result)
     return result
