@@ -108,3 +108,4 @@ venv.bak/
 .idea
 *.bak
 *.pkl
+dataset/mongo.txt
