@@ -238,7 +238,6 @@ class BiLSTM_CRF(nn.Module):
             scores = nn.functional.cross_entropy(feats, tags)
             return scores
 
-
     def forward(self, sentence, chars, caps, chars2_length, d):
         feats = self._get_lstm_features(sentence, chars, caps, chars2_length, d)
         # viterbi to get tag_seq

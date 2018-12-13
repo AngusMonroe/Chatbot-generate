@@ -10,6 +10,8 @@ data at `dataset`
 
 pertrained word vectors at `models/glove`
 
+configuration file for log database at `dataset`
+
 ## Data Format
 
 NER data
