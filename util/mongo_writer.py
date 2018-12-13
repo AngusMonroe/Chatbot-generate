@@ -1,5 +1,5 @@
 from pymongo import MongoClient
-
+coll = None
 
 def load_conf(conf_file):
     fp = open(conf_file, 'r', encoding='utf8')
@@ -14,19 +14,20 @@ def load_conf(conf_file):
 
 
 def load_db(conf_file):
+    global coll
+    if coll:
+        return coll
     address, port, user, password, collection_name = load_conf(conf_file)
     conn = MongoClient(address, int(port))
     db_auth = conn.admin
     db_auth.authenticate(user, password)  # 用户认证
-    db = db_auth.bigsci  # 连接库
-    collection = db[collection_name]
-    # print(collection.find_one())
-    # db.collection_names()
-    return collection
+    db = conn.bigsci  # 连接库
+    coll = db[collection_name]
+    return coll
 
 
 def write_db(collection, data):
-    collection.insert(data)
+    collection.insert_one(data)
 
 
 if __name__ == '__main__':

@@ -49,8 +49,9 @@ def query(text, name):
         'bot_name': name
     }
 
+    log_data.update(ret)
     coll = load_db('dataset/mongo.txt')
-    write_db(coll, log_data.update(ret))
+    write_db(coll, log_data)
 
     result = json.dumps(ret, ensure_ascii=False)
     logger.info(result)
@@ -58,7 +59,7 @@ def query(text, name):
 
 
 def main():
-    app.run(host='0.0.0.0', port=5014, debug=False)
+    app.run(host='0.0.0.0', port=55014, debug=False)
 
 if __name__ == '__main__':
     main()

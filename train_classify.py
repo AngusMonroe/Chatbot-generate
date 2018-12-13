@@ -60,6 +60,10 @@ else:
     d_word_index, embed = v_builder.get_word_index(min_sample=args.min_samples)
 if not os.path.exists('gen'):
     os.mkdir('gen')
+try:
+    os.makedirs('models/' + args.name)
+except FileExistsError:
+    pass
 with codecs.open('models/' + args.name + '/classify_stat.pkl', 'wb') as fout:
     pickle.dump(d_word_index, fout)
 # joblib.dump(d_word_index, 'models/' + args.name + '/d_word_index.pkl', compress=3)

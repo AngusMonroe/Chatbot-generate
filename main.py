@@ -58,9 +58,11 @@ def generate_chatbot(bot_id, class_num):
     classify_status = train_classify(name=bot_id, gpu_num=gpu_num, class_num=class_num)
     if classify_status:
         print('Classify training error!')
+        exit(-1)
     ner_status = train_ner(name=bot_id, gpu_num=gpu_num)
     if ner_status:
         print('NER training error!')
+        exit(-1)
 
 
 def main(bot_id, ner_file_path, classify_file_path):
