@@ -49,8 +49,9 @@ def query(text, name):
         'bot_name': name
     }
 
+    log_data.update(ret)
     coll = load_db('dataset/mongo.txt')
-    write_db(coll, log_data.update(ret))
+    write_db(coll, log_data)
 
     result = json.dumps(ret, ensure_ascii=False)
     logger.info(result)
