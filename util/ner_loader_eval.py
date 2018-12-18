@@ -8,7 +8,7 @@ from util.ner_utils import iob2, iob_iobes
 import string
 import random
 import numpy as np
-import model
+import model_eval
 
 
 def unicodeToAscii(s):
@@ -104,8 +104,8 @@ def tag_mapping(sentences):
     """
     tags = [[word[-1] for word in s] for s in sentences]
     dico = create_dico(tags)
-    dico[model.START_TAG] = -1
-    dico[model.STOP_TAG] = -2
+    dico[model_eval.START_TAG] = -1
+    dico[model_eval.STOP_TAG] = -2
     tag_to_id, id_to_tag = create_mapping(dico)
     print("Found %i unique named entity tags" % len(dico))
     return dico, tag_to_id, id_to_tag
