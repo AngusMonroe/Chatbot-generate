@@ -1,5 +1,7 @@
 from pymongo import MongoClient
+
 coll = None
+
 
 def load_conf(conf_file):
     fp = open(conf_file, 'r', encoding='utf8')
